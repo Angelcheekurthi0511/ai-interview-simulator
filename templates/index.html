@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AI Interview Simulator</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body {
+    margin:0;
+    font-family: 'Segoe UI';
+    background: linear-gradient(135deg,#667eea,#764ba2);
+    color:white;
+}
+
+/* layout */
+.container {
+    max-width:900px;
+    margin:auto;
+    padding:20px;
+}
+
+/* glass cards */
+.card {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.2);
+}
+
+/* heading */
+h2 {
+    text-align:center;
+    margin-bottom:20px;
+}
+
+/* inputs */
+input, textarea {
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:none;
+    border-radius:10px;
+    outline:none;
+    font-size:14px;
+}
+
+/* buttons */
+button {
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:none;
+    border-radius:10px;
+    background: linear-gradient(135deg,#00c6ff,#0072ff);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+button:hover {
+    transform: scale(1.03);
+    background: linear-gradient(135deg,#0096ff,#005eff);
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+/* question */
+#question {
+    margin-top:15px;
+    font-weight:bold;
+    font-size:18px;
+}
+
+/* timer */
+#timer {
+    text-align:right;
+    font-weight:bold;
+}
+
+/* dashboard */
+.dashboard p {
+    margin:5px 0;
+}
+
+/* result */
+#result {
+    background: rgba(255,255,255,0.2);
+    padding:10px;
+    border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>🎤 AI Interview Simulator</h2>
+
+<!-- START -->
+<div class="card">
+<input id="topicInput" placeholder="Enter topic (e.g. AI, DBMS, OS)">
+<button onclick="startInterview()">🚀 Start Interview</button>
+<button onclick="stopInterview()">⛔ Stop Interview</button>
+</div>
+
+<!-- QUESTION -->
+<div class="card">
+<div id="timer">⏱ Time Left: 90</div>
+<div id="question">Click Start to begin...</div>
+
+<textarea id="answer" placeholder="Type or speak your answer..."></textarea>
+
+<button onclick="startListening()">🎤 Start Speaking</button>
+<button onclick="stopListening()">🛑 Stop Speaking</button>
+<button onclick="manualSubmit()">📤 Submit Answer</button>
+</div>
+
+<!-- DASHBOARD -->
+<div class="card dashboard">
+<h3>📊 Performance</h3>
+<p>Questions: <span id="qCount">0</span></p>
+<p>Total Score: <span id="totalScore">0</span></p>
+<p>Average: <span id="avgScore">0</span></p>
+<canvas id="chart"></canvas>
+</div>
+
+<!-- RESULT -->
+<div class="card" id="result"></div>
+
+</div>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
